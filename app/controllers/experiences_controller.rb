@@ -3,6 +3,8 @@ class ExperiencesController < ApplicationController
   before_action :set_experience, only: :show
 
   def index
+    @categories = ["Jousting", "Archery", "Samurai", "Vikings", "Knights", "Ninja"]
+    @experiences = Experience.all
   end
 
   def show
