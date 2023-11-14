@@ -1,0 +1,35 @@
+<div class="exp-top-image" style="background-image: url('<%= cl_image_path(@experience.photo.key) %>')"></div>
+<div class="container">
+  <div class="row wrapper">
+    <div class="col-md-8 exp-info">
+      <div class="exp-info">
+        <div class="exp-name-address exp-info-item">
+          <div class="d-flex flex-column">
+            <h1><%= @experience.name %></h1>
+            <h3><%= @experience.address %></h3>
+          </div>
+        </div>
+        <div class="exp-host-info exp-info-item">
+          <p><%= @experience.host.first_name %> <%= @experience.host.last_name %></p>
+          <p><%= @experience.host.phone_number %></p>
+        </div>
+        <div class="exp-desc exp-info-item">
+          <h3>Description</h3>
+          <div class="badge rounded-pill bg-info text-dark"><%= @experience.category %></div>
+          <p><%= @experience.description %></p>
+          <p><i class="fa-solid fa-yen-sign"></i><%= @experience.price %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 exp-form">
+      <div class="exp-info-item">
+        <h3>Book This Experience</h3>
+        <%= simple_form_for(@booking) do |f| %>
+          <%= f.input :start_date, as: :string %>
+          <%= f.input :end_date, as: :string %>
+          <%= f.submit 'Book', class: 'btn btn-success w-100' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
