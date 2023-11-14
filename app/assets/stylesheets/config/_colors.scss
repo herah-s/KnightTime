@@ -1,10 +1,26 @@
 // Define variables for your color scheme
 
-// For example:
-$red: #FD1015;
+// Colors
+
+$red: #FF122A;
 $blue: #0D6EFD;
-$yellow: #FFC65A;
+$yellow: #FFB202;
 $orange: #E67E22;
-$green: #1EDD88;
-$gray: #0E0000;
+$green: #35B524;
+$light-white: #E7E7E7;
 $light-gray: #F4F4F4;
+
+// Custom colors for glow effect
+
+$light-blue: #6060E0;
+$mid-blue: #3D3D8F;
+$dark-blue: #181838;
+
+$light-purple: #9B31F7;
+$mid-purple: #6821A6;
+$dark-purple: #32104F;
+
+// Background colors
+
+$bg-color: rgb(36, 36, 36);
+$bg-gradient: 36deg, rgba(24,24,56,1) 0%, rgba(78,25,125,1) 100%;
