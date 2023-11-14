@@ -27,7 +27,7 @@
           <h3>Description</h3>
           <div class="badge rounded-pill bg-info text-dark mb-2"><%= @experience.category %></div>
           <p><%= @experience.description %></p>
-          <p><i class="fa-solid fa-yen-sign"></i><%= @experience.price %></p>
+          <p><i class="fa-solid fa-yen-sign"></i><%= @experience.price %> per day</p>
         </div>
         <%# Map (Maybe) %>
         <div id="exp-map" class="exp-info-item">
@@ -37,11 +37,12 @@
     </div>
     <%# New Booking Form %>
     <div class="col-md-4 exp-form">
-      <div class="exp-info-item">
+      <div class="exp-info-item" data-controller="total-calculator" data-total-calculator-price-value=<%= @experience.price %>>
         <h3>Book This Experience</h3>
         <%= simple_form_for [@experience, @booking] do |f| %>
-          <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
-          <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
+          <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker", total_calculator_target: 'start', action: "input->total-calculator#calculate"} } %>
+          <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker", total_calculator_target: 'end', action: "input->total-calculator#calculate" } } %>
+          <div class="d-flex gap-4"><h4>Your Total: </h4><h4 data-total-calculator-target="total"></h4></div>
           <%= f.button :submit, 'Book', class: 'btn btn-success w-100' %>
         <% end %>
       </div>
