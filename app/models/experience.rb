@@ -4,7 +4,7 @@ class Experience < ApplicationRecord
   has_one_attached :photo
 
   validates :name, :description, :price, :address, :category, presence: true
-  validates :description, length: { minimum: 100 }
+  validates :description, length: { minimum: 10 }
   validates :price, numericality: true
   validates :category, inclusion: { in: ["Jousting", "Archery", "Samurai", "Vikings", "Knights", "Ninja"] }
 end
