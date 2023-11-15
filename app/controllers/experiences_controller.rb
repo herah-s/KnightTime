@@ -5,14 +5,16 @@ class ExperiencesController < ApplicationController
   def index
     @categories = ["Jousting", "Archery", "Samurai", "Vikings", "Knights", "Ninja"]
     if params[:category].present?
-      @experiences = Experience.where(category: params[:category])
+      @experiences = Experience.where("category = ?", params[:category])
+    elsif params[:query].present?
+      @experiences = Experience.where("description LIKE ?", "%#{params[:query]}%")
     else
       @experiences = Experience.all
     end
   end
 
   def show
-    @booking = Booking.new()
+    @booking = Booking.new
   end
 
   private
