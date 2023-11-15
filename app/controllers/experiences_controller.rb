@@ -8,11 +8,7 @@ class ExperiencesController < ApplicationController
   end
 
   def show
-    @booking = Booking.new(
-      status: "pending",
-      total_price: @experience.price,
-      user: current_user
-    )
+    @booking = Booking.new()
   end
 
   private
