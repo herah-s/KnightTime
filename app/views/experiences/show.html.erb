@@ -1,10 +1,10 @@
 <div class="exp-top-image" style="background-image: url('<%= cl_image_path(@experience.photo.key) %>')"></div>
 <div class="container">
   <div class="row wrapper">
-  <%# Experience Info %>
+    <%# Experience Info %>
     <div class="col-md-8 exp-info">
       <div class="exp-info">
-      <%# Basic Info %>
+        <%# Basic Info %>
         <div class="exp-name-address exp-info-item">
           <div class="d-flex flex-column">
             <h1><%= @experience.name %></h1>
@@ -31,7 +31,7 @@
         </div>
         <%# Map (Maybe) %>
         <div id="exp-map" class="exp-info-item">
-        Map Goes Here Maybe!
+          Map Goes Here Maybe!
         </div>
       </div>
     </div>
@@ -42,7 +42,10 @@
         <%= simple_form_for [@experience, @booking] do |f| %>
           <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker", total_calculator_target: 'start', action: "input->total-calculator#calculate"} } %>
           <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker", total_calculator_target: 'end', action: "input->total-calculator#calculate" } } %>
-          <div class="d-flex gap-4"><h4 class="d-none" data-total-calculator-target="totalLabel">Your Total: </h4><h4 data-total-calculator-target="total"></h4></div>
+          <div class="d-flex gap-4">
+            <h4 class="d-none" data-total-calculator-target="totalLabel">Your Total: </h4>
+            <h4 data-total-calculator-target="total"></h4>
+          </div>
           <%= f.button :submit, 'Book', class: 'btn btn-success w-100' %>
         <% end %>
       </div>
@@ -50,11 +53,16 @@
       <div class="exp-info-item">
         <h3>Share This Experience</h3>
         <ul class="d-flex flex-row flex-start gap-4" style="list-style: none; padding: 0px">
-          <li><h1><a style="color: #aaaaaa" href="#"><i class="fa-brands fa-square-facebook"></i></a></h1></li>
-          <li><h1><a style="color: #aaaaaa" href="#"><i class="fa-brands fa-square-instagram"></i></a></h1></li>
-          <li><h1><a style="color: #aaaaaa" href="#"><i class="fa-brands fa-square-pinterest"></i></a></h1></li>
+          <li>
+            <h1><a style="color: #aaaaaa" href="#"><i class="fa-brands fa-square-facebook"></i></a></h1>
+          </li>
+          <li>
+            <h1><a style="color: #aaaaaa" href="#"><i class="fa-brands fa-square-instagram"></i></a></h1>
+          </li>
+          <li>
+            <h1><a style="color: #aaaaaa" href="#"><i class="fa-brands fa-square-pinterest"></i></a></h1>
+          </li>
         </ul>
       </div>
     </div>
   </div>
-</div>
