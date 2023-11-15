@@ -1,39 +1,38 @@
-<div class="container">
-  <%# Bootstrap category navbar start %>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Active Category</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Categories
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <% @categories.each do |category| %>
-                <li><a class="dropdown-item" href="#"><%= category %></a></li>
-              <% end %>
-            </ul>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
+<%# Bootstrap category navbar start %>
+<nav class="navbar navbar-expand-lg" style="background-color: #6821A6;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Active Category</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% @categories.each do |category| %>
+              <li><a class="dropdown-item" href="#"><%= category %></a></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
-  </nav>
-  <%# Bootstrap category navbar end %>
+  </div>
+</nav>
+<%# Bootstrap category navbar end %>
 
+<div class="container">
 
-
-  <h1>Experiences</h1>
+  <h1 class="mt-3">Experiences</h1>
 
   <div class="cards">
     <% @experiences.each do |experience| %>
@@ -44,10 +43,13 @@
             <div>
               <h2><%= experience.name %></h2>
               <p>📍 <%= experience.address %></p>
-              <p class="badge rounded-pill bg-info text-dark"><%= experience.category %></p>
             </div>
-            <h2 class="card-trip-pricing">¥<%= experience.price %></h2>
+            <div>
+              <p class="badge rounded-pill bg-info text-dark mb-1"><%= experience.category %></p>
+              <h2 class="card-trip-pricing text-end">¥<%= experience.price.to_i %></h2>
+            </div>
           </div>
+          <%= link_to "", experience_path(experience[:id]), class: "card-link"%>
         </div>
       </div>
     <% end %>
