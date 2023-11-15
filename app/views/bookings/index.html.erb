@@ -1,0 +1,20 @@
+<div class="container">
+<h2>My bookings</h2>
+  <div class="cards">
+    <% @bookings.each do |booking| %>
+      <div class="border-animated card-border">
+        <div class="card-trip">
+          <%= cl_image_tag booking.experience.photo.key %>
+          <div class="card-trip-infos">
+            <div>
+              <h3><%= booking.experience.name %></h3>
+              <p class="mb-2">📍 <%= booking.experience.address %></p>
+              <p class="badge rounded-pill bg-info text-dark"><%= booking.experience.category %></p>
+            </div>
+            <h2 class="card-trip-pricing">¥<%= booking.total_price %></h2>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
