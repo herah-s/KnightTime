@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   before_action :set_experience, only: [:create]
 
   def index
-    @bookings = Booking.where(user: current_user)
+    @bookings = Booking.where(user: current_user).order(created_at: :desc)
   end
 
   def create
