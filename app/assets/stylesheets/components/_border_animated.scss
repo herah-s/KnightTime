@@ -16,12 +16,11 @@ $card-width: calc(var($card-height) / 1.5);
 }
 
 .border-animated {
-  width: max-content;
+  width: 342px;
   margin-top: 20px;
   margin-bottom: 10px;
   margin-right: 15px;
   margin-left: 15px;
-  padding-top: 7px;
   border-radius: 6px;
   position: relative;
   justify-content: center;
@@ -30,14 +29,14 @@ $card-width: calc(var($card-height) / 1.5);
   &::before {
     content: "";
     width: 104%;
-    height: 102%;
+    height: 96%;
     border-radius: 8px;
     background-image: linear-gradient(
       var(--rotate)
       , #a27fe8, #9065E9 43%, #372765);
     position: absolute;
     z-index: -1;
-    top: -1%;
+    top: 0%;
     left: -2%;
     animation: spin 2.5s linear infinite;
   }
@@ -71,24 +70,24 @@ $card-width: calc(var($card-height) / 1.5);
 
 .big-border-animated {
   width: 100%;
+  height: 121px;
   margin-top: 20px;
   margin-bottom: 10px;
-  padding-top: 7px;
   border-radius: 6px;
   position: relative;
 
   &::before {
     content: "";
-    width: 104%;
-    height: 102%;
+    width: 100.3%;
+    height: 105px;
     border-radius: 8px;
     background-image: linear-gradient(
       var(--rotate)
       , #a27fe8, #9065E9 43%, #372765);
     position: absolute;
     z-index: -1;
-    top: -1%;
-    left: -2%;
+    top: 3px;
+    left: -2px;
     animation: spin 2.5s linear infinite;
   }
 
@@ -103,7 +102,7 @@ $card-width: calc(var($card-height) / 1.5);
     width: 100%;
     margin: 0 auto;
     transform: scale(0.8);
-    filter: blur(3.5rem);
+    filter: blur(1.5rem);
     background-image: linear-gradient(var(--rotate),
     #a27fe8, #9065E9 43%, #372765);
     opacity: 1;
