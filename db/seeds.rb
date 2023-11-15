@@ -147,7 +147,7 @@ excalibur.save
 
 assassins_file = URI.open("https://i.ytimg.com/vi/BgKODqsAG4Y/maxresdefault.jpg")
 assassins = Experience.create!(
-  name: "Assassin's Creed-like experience",
+  name: "Assassin experience",
   description: "Dive into an Assassin's Creed-like experience, where history and combat converge in an immersive blend of stealth, skill, and a symphony of lethal precision.",
   price: 12_500,
   category: "Ninja",
