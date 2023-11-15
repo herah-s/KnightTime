@@ -4,7 +4,11 @@ class ExperiencesController < ApplicationController
 
   def index
     @categories = ["Jousting", "Archery", "Samurai", "Vikings", "Knights", "Ninja"]
-    @experiences = Experience.all
+    if params[:category].present?
+      @experiences = Experience.where(category: params[:category])
+    else
+      @experiences = Experience.all
+    end
   end
 
   def show
