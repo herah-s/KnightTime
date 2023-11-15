@@ -97,7 +97,7 @@ catapulting = Experience.create!(
 catapulting.photo.attach(io: catapulting_file, filename: "catapulting.jpg", content_type: "image/jpg")
 catapulting.save
 
-kyudo_file = URI.open("https://www.reddit.com/media?url=https%3A%2F%2Fexternal-preview.redd.it%2FEgPC6M1SpypMX2xaTIxE1zdG4VdV1WY92aW5mMIVOP8.jpg%3Fauto%3Dwebp%26s%3D4425883e788a14e2fe70c8cb95d8a0d96304e58d")
+kyudo_file = URI.open("https://thumbs.dreamstime.com/b/kyudo-29126282.jpg")
 kyudo = Experience.create!(
   name: "Kyudo",
   description: "In the tranquil discipline of Kyudo, each drawn arrow becomes a meditation, and every release is a manifestation of harmony, blending the warrior's spirit with the elegance of the bow.",
