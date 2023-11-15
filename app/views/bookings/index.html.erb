@@ -1,17 +1,17 @@
 <div class="container">
-<h2>My bookings</h2>
-  <div class="cards">
+<h2 class="mt-2">My bookings</h2>
+  <div>
     <% @bookings.each do |booking| %>
-      <div class="border-animated card-border">
-        <div class="card-trip">
+      <div class="big-card-border big-border-animated">
+        <div class="card-product">
           <%= cl_image_tag booking.experience.photo.key %>
-          <div class="card-trip-infos">
+          <div>
             <div>
-              <h3><%= booking.experience.name %></h3>
-              <p class="mb-2">📍 <%= booking.experience.address %></p>
-              <p class="badge rounded-pill bg-info text-dark"><%= booking.experience.category %></p>
+              <h3 class="ms-5"><%= booking.experience.name %> - ¥<%= booking.total_price.to_i %></h3>
+              <p class="mb-2 ms-5">📍 <%= booking.experience.address %></p>
+              <p class="ms-5"><strong><%= booking.status %></strong></p>
+              <p class="ms-5"><%= booking.start_date %> - <%= booking.end_date %></p>
             </div>
-            <h2 class="card-trip-pricing">¥<%= booking.total_price %></h2>
           </div>
         </div>
       </div>

@@ -1,10 +1,10 @@
 class BookingsController < ApplicationController
-<<<<<<< HEAD
+  before_action :set_experience, only: [:create]
+
   def index
-    @bookings = Booking.all
-=======
-  before_action :set_experience
-  # total_price is the price per day multiplied by the amount of days booked
+    @bookings = Booking.where(user: current_user)
+  end
+
   def create
     parsed_start_date = Date.parse(params[:booking][:start_date])
     parsed_end_date = Date.parse(params[:booking][:end_date])
@@ -31,6 +31,5 @@ class BookingsController < ApplicationController
 
   def set_experience
     @experience = Experience.find(params[:experience_id])
->>>>>>> 6346476113ea99309f1bde105b563618d5484882
   end
 end

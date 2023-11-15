@@ -169,7 +169,7 @@ booking_1 = Booking.create!(
 )
 
 booking_2 = Booking.create!(
-  user: yann,
+  user: doug,
   experience: axe_throwing,
   start_date: "2023-11-14",
   end_date: "2023-11-15",

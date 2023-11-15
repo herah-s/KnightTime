@@ -7,6 +7,8 @@ $card-width: calc(var($card-height) / 1.5);
   inherits: false;
 }
 
+// Border for experiences index
+
 .card-border {
   display: flex;
   align-items: center;
@@ -58,6 +60,55 @@ $card-width: calc(var($card-height) / 1.5);
   }
 }
 
+// Background for booking index
+
+.big-card-border {
+  display: flex;
+  flex-direction: column;
+}
+
+.big-border-animated {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-top: 7px;
+  border-radius: 6px;
+  position: relative;
+
+  &::before {
+    content: "";
+    width: 104%;
+    height: 102%;
+    border-radius: 8px;
+    background-image: linear-gradient(
+      var(--rotate)
+      , #a27fe8, #9065E9 43%, #372765);
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: spin 2.5s linear infinite;
+  }
+
+  &::after {
+    position: absolute;
+    content: "";
+    top: calc(var($card-height) / 6);
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    transform: scale(0.8);
+    filter: blur(3.5rem);
+    background-image: linear-gradient(var(--rotate),
+    #a27fe8, #9065E9 43%, #372765);
+    opacity: 1;
+    transition: opacity .5s;
+    animation: spin 2.5s linear infinite;
+  }
+}
 
 @keyframes spin {
   0% {
