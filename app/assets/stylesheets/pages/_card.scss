@@ -5,15 +5,15 @@
 
 .card-trip {
   overflow: hidden;
-  background: white;
+  background: $bg-color;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 5px;
   margin: 5px 0px 15px 0px;
-  height: 350px;
+  height: auto;
   width: 400px;
 
   &:hover {
-    background: rgb(250, 242, 255);
+    background: rgba(36, 36, 36, 0.588);
     transition: 1s;
   }
 }
@@ -49,5 +49,14 @@
   right: 16px;
   top: -20px;
   width: 40px;
+}
+
+// formatting of individual card links
+.card-link {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
 }
 // Experiences index page cards end
