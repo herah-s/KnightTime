@@ -1,0 +1,36 @@
+.exp-top-image {
+  height: 400px;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.wrapper {
+  position: absolute;
+}
+
+.exp-form {
+  position: relative;
+  top: -25px;
+}
+
+.exp-info {
+  position: relative;
+  top: -12px;
+}
+
+.exp-info-item {
+  background-color: white;
+  margin: 8px;
+  padding: 16px 24px;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.form.wrapper {
+  background-color: white;
+  margin: 8px;
+  padding: 16px 24px;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}

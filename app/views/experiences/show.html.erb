@@ -1,0 +1,60 @@
+<div class="exp-top-image" style="background-image: url('<%= cl_image_path(@experience.photo.key) %>')"></div>
+<div class="container">
+  <div class="row wrapper">
+  <%# Experience Info %>
+    <div class="col-md-8 exp-info">
+      <div class="exp-info">
+      <%# Basic Info %>
+        <div class="exp-name-address exp-info-item">
+          <div class="d-flex flex-column">
+            <h1><%= @experience.name %></h1>
+            <p><%= @experience.address %></p>
+          </div>
+        </div>
+        <%# Host Info %>
+        <div class="exp-host-info exp-info-item">
+          <h3>Host</h3>
+          <div class="d-flex justify-content-start align-items-center gap-4">
+            <%= image_tag 'placeholder_avatar.png', alt: 'host-avatar', class: "avatar" %>
+            <div>
+              <p style="margin-bottom: 0px"><%= @experience.host.first_name %> <%= @experience.host.last_name %></p>
+              <p><%= @experience.host.phone_number %></p>
+            </div>
+          </div>
+        </div>
+        <%# Description %>
+        <div class="exp-desc exp-info-item">
+          <h3>Description</h3>
+          <div class="badge rounded-pill bg-info text-dark mb-2"><%= @experience.category %></div>
+          <p><%= @experience.description %></p>
+          <p><i class="fa-solid fa-yen-sign"></i><%= @experience.price %> per day</p>
+        </div>
+        <%# Map (Maybe) %>
+        <div id="exp-map" class="exp-info-item">
+        Map Goes Here Maybe!
+        </div>
+      </div>
+    </div>
+    <%# New Booking Form %>
+    <div class="col-md-4 exp-form">
+      <div class="exp-info-item" data-controller="total-calculator" data-total-calculator-price-value=<%= @experience.price %>>
+        <h3>Book This Experience</h3>
+        <%= simple_form_for [@experience, @booking] do |f| %>
+          <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker", total_calculator_target: 'start', action: "input->total-calculator#calculate"} } %>
+          <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker", total_calculator_target: 'end', action: "input->total-calculator#calculate" } } %>
+          <div class="d-flex gap-4"><h4 class="d-none" data-total-calculator-target="totalLabel">Your Total: </h4><h4 data-total-calculator-target="total"></h4></div>
+          <%= f.button :submit, 'Book', class: 'btn btn-success w-100' %>
+        <% end %>
+      </div>
+      <%# Share Links %>
+      <div class="exp-info-item">
+        <h3>Share This Experience</h3>
+        <ul class="d-flex flex-row flex-start gap-4" style="list-style: none; padding: 0px">
+          <li><h1><a href="#"><i class="fa-brands fa-square-facebook"></i></a></h1></li>
+          <li><h1><a href="#"><i class="fa-brands fa-square-instagram"></i></a></h1></li>
+          <li><h1><a href="#"><i class="fa-brands fa-square-pinterest"></i></a></h1></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
