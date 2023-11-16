@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <%= link_to "Experiences", experiences_path, class: "nav-link active", "aria-current": "page" %>
+          <%= link_to "Experiences", experiences_path, class: "nav-link active text-white", "aria-current": "page" %>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -43,7 +43,7 @@
               <p><i class="fa-solid fa-map-pin" style="color: red;"></i> <%= experience.address %></p>
             </div>
             <div>
-              <p class="badge rounded-pill bg-info text-dark mb-1"><%= experience.category %></p>
+              <p class="badge rounded-pill bg-info text-white mb-1"><%= experience.category %></p>
               <h2 class="card-trip-pricing text-end">¥<%= experience.price.to_i %></h2>
             </div>
           </div>
