@@ -3,18 +3,26 @@
   <div>
     <% @bookings.each do |booking| %>
       <div class="big-card-border big-border-animated">
-        <div class="card-product">
-          <%= cl_image_tag booking.experience.photo.key %>
-          <div>
-            <div>
-              <h3 class="ms-5 pt-2"><%= booking.experience.name %> - ¥<%= booking.total_price.to_i %></h3>
-              <p class="mb-2 ms-5"><i class="fa-solid fa-map-pin" style="color: red;"></i> <%= booking.experience.address %></p>
-              <p class="ms-5"><strong><%= booking.status %></strong></p>
-              <p class="ms-5 pb-2"><%= booking.start_date %> - <%= booking.end_date %></p>
+        <div class="card-product-host-bookings row">
+          <div class="col-3">
+            <%= cl_image_tag booking.experience.photo.key %>
+          </div>
+          <div class="col-4">
+            <h3 class="ms-5 pt-2 mt-4 mb-4"><%= booking.experience.name %> - ¥<%= booking.total_price.to_i %></h3>
+            <p class="mb-2 ms-5"><i class="fa-solid fa-map-pin" style="color: red;"></i> <%= booking.experience.address %></p>
+          </div>
+          <div class="col-3 text-end">
+            <p class="badge rounded-pill bg-info text-white mb-4 mt-4"><%= booking.status %></p>
+            <p class="m-0">From <%= booking.start_date %></p>
+            <p class="m-0">to <%= booking.end_date %></p>
+          </div>
+          <div class="col-2">
+            <div class="confirm_or_reject text-end">
+              <button class="btn my-3"><i class="fa-solid fa-circle-check fa-2xl" style="color: green;"></i></button>
+              <button class="btn my-3"><i class="fa-solid fa-circle-xmark fa-2xl" style="color: red;"></i></button>
             </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
