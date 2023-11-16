@@ -9,11 +9,24 @@
             <div>
               <h3 class="ms-5 pt-2"><%= booking.experience.name %> - ¥<%= booking.total_price.to_i %></h3>
               <p class="mb-2 ms-5"><i class="fa-solid fa-map-pin" style="color: red;"></i> <%= booking.experience.address %></p>
-              <p class="ms-5"><strong><%= booking.status %></strong></p>
               <p class="ms-5 pb-2"><%= booking.start_date %> - <%= booking.end_date %></p>
             </div>
           </div>
         </div>
+      </div>
+      <div class="d-flex">
+        <% if booking.pending? %>
+          <%= simple_form_for booking, url: host_booking_path(booking) do |f| %>
+            <%= f.input :status, as: :hidden, input_html: { value: 'confirmed'} %>
+            <%= f.submit 'Accept', class: 'btn btn-success' %>
+          <% end %>
+          <%= simple_form_for booking, url: host_booking_path(booking) do |f| %>
+            <%= f.input :status, as: :hidden, input_html: { value: 'rejected'} %>
+            <%= f.submit 'Reject', class: 'btn btn-light' %>
+          <% end %>
+        <% else %>
+          <p><%= booking.status %></p>
+        <% end %>
       </div>
     <% end %>
   </div>

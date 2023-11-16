@@ -2,12 +2,16 @@ class Host::BookingsController < ApplicationController
   before_action :set_booking, only: :update
 
   def index
-    @bookings = Booking.all
+    @bookings = current_user.bookings_as_host
   end
 
   def update
     @booking.update(booking_params)
-    @booking.save
+    if @booking.save
+      redirect_to host_bookings_path
+    else
+      render :index, status: :unprocessable_entity
+    end
   end
 
   private
