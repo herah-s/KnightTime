@@ -18,7 +18,7 @@
             </div>
             <div class="d-grid gap-2">
               <%= link_to "Edit",
-              edit_experiences_path(experience), class:"btn btn-success btn-sm mx-2" %>
+              edit_experience_path(experience), class:"btn btn-success btn-sm mx-2" %>
               <%= link_to "Delete",
               host_experience_path(experience),
               data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
