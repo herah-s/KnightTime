@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :bookings, only: [:index, :destroy]
 
   namespace :host do
+    resources :experiences, only: [:index, :destroy]
     resources :bookings, only: [:index, :update]
   end
 end
