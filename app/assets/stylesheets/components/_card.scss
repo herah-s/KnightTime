@@ -1,6 +1,8 @@
+// Booking index page
+
 .card-product {
-  overflow: hidden;
-  height: 120px;
+  height: 100%;
+  width: 50em;
   background: $bg-color;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   margin: 5px 0px 15px 0px;
@@ -10,8 +12,8 @@
 }
 
 .card-product img {
-  height: 100%;
-  width: 120px;
+  height: 200px;
+  width: 18em;
   object-fit: cover;
 }
 
