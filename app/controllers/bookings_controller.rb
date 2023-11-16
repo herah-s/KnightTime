@@ -23,6 +23,13 @@ class BookingsController < ApplicationController
     end
   end
 
+  def destroy
+    @bookings = Booking.where(user: current_user)
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to booking_path(@bookings), status: :see_other
+  end
+
   private
 
   def booking_params
