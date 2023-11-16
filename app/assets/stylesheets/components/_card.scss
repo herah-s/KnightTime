@@ -1,6 +1,8 @@
+// Booking index page
+
 .card-product {
-  overflow: hidden;
-  height: 120px;
+  height: 100%;
+  width: 50em;
   background: $bg-color;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   margin: 5px 0px 15px 0px;
@@ -10,8 +12,8 @@
 }
 
 .card-product img {
-  height: 100%;
-  width: 120px;
+  height: 200px;
+  width: 18em;
   object-fit: cover;
 }
 
@@ -32,6 +34,21 @@
 .card-product .card-product-infos {
   padding: 16px;
 }
+
+// host booking index page start
+.card-product-host-bookings {
+  width: 100%;
+  height: 150px;
+  background: $bg-color;
+}
+
+.card-product-host-bookings img {
+  height: 150px;
+  width: 200px;
+  object-fit: cover;
+}
+
+// host booking index page end
 
 
 // Experiences index page cards start
@@ -68,7 +85,6 @@
 
 .card-trip p {
   font-size: 16px;
-  opacity: .7;
   margin: 0;
 }
 
