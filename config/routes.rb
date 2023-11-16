@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :bookings, only: [:create]
   end
 
-  resources :bookings, only: [:index]
+  resources :bookings, only: [:index, :destroy]
 
   namespace :host do
     resources :bookings, only: [:index, :update]
