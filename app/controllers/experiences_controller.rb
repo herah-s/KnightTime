@@ -17,6 +17,22 @@ class ExperiencesController < ApplicationController
     @booking = Booking.new
   end
 
+  def new
+    @experience = Experience.new
+    @categories = ["Jousting", "Archery", "Samurai", "Vikings", "Knights", "Ninja"]
+  end
+
+  def create
+    @experience = Experience.new(experience_params)
+    @experience.host = current_user
+
+    if @experience.save
+      redirect_to host_experiences_path(@experience)
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+  
   def edit
   end
 
@@ -26,8 +42,6 @@ class ExperiencesController < ApplicationController
       redirect_to host_experiences_path
     else
       render :edit, status: :unprocessable_entity
-    end
-  end
 
   private
 
