@@ -32,7 +32,7 @@ class ExperiencesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-  
+
   def edit
   end
 
@@ -42,6 +42,8 @@ class ExperiencesController < ApplicationController
       redirect_to host_experiences_path
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
 
   private
 
