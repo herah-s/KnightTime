@@ -14,33 +14,44 @@
         <%# Description %>
         <div class="exp-desc exp-info-item">
           <h3>Description</h3>
-          <div class="badge rounded-pill bg-info text-dark mb-2"><%= @experience.category %></div>
-          <p><%= @experience.description %></p>
-          <p><i class="fa-solid fa-yen-sign"></i><%= @experience.price.round %> per day</p>
+          <div class="badge rounded-pill bg-info text-light mb-2"><%= @experience.category %></div>
+          <p class="fs-5"><%= @experience.description %></p>
+          <p class="text-success"><i class="fa-solid fa-yen-sign"> </i><%= @experience.price.round %> per day</p>
         </div>
         <%# Host Info %>
         <div class="exp-host-info exp-info-item">
           <h3>Host</h3>
           <div class="d-flex justify-content-start align-items-center gap-4">
-            <%= image_tag 'placeholder_avatar.png', alt: 'host-avatar', class: "avatar" %>
+            <% if  @experience.host.photo.key == nil %>
+              <%= image_tag 'placeholder_avatar.png', alt: 'host-avatar', class: "avatar" %>
+            <% else %>
+              <%= cl_image_path(@experience.host.photo.key, alt: 'host-avatar', class: "avatar") %>
+            <% end %>
             <div>
               <p style="margin-bottom: 0px"><%= @experience.host.first_name %> <%= @experience.host.last_name %></p>
               <p><%= @experience.host.phone_number %></p>
             </div>
           </div>
         </div>
-        <%# Map (Maybe) %>
-        <div id="exp-map" class="exp-info-item">
-          <div class="d-flex flex-space-between">
-            <h3>Reviews</h3>
-            <button class="btn btn-success flex-end">Write a Review</button>
-          </div>
+        <%# Reviews %>
+        <div class="exp-info-item">
+          <h3>Latest Reviews</h3>
           <% if @reviews.any? %>
             <% @reviews.each do |review| %>
-              <div><%= review.user.first_name %> <%= review.user.last_name %></div>
-              <div>
-                Danger Level - <%= review.danger_level %></div>
-              <p><%= review.content %></p>
+              <div class="card w-100 mb-3 border border-success">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between">
+                    <h5 class="card-title"><%= review.user.first_name %> <%= review.user.last_name %></h5>
+                    <div><%= link_to 'Delete', review_path(review), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete your review?' } %></div>
+                  </div>
+                  <p class="card-text"><%= review.content %></p>
+                  <div class="text-end">
+                    <% review.danger_level.times do %>
+                    <i class="fa-solid fa-skull"></i>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
             <% end %>
           <% else %>
             <p><%= "No reviews yet!" %></p>
@@ -56,8 +67,8 @@
           <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker", total_calculator_target: 'start', action: "input->total-calculator#calculate"} } %>
           <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker", total_calculator_target: 'end', action: "input->total-calculator#calculate" } } %>
           <div class="d-flex gap-4">
-            <h4 class="d-none" data-total-calculator-target="totalLabel">Your Total: </h4>
-            <h4 data-total-calculator-target="total"></h4>
+            <h5 class="d-none" data-total-calculator-target="totalLabel">Your Total: </h5>
+            <h5 data-total-calculator-target="total"></h5>
           </div>
           <%= f.button :submit, 'Book', class: 'btn btn-success w-100' %>
         <% end %>
@@ -77,5 +88,34 @@
           </li>
         </ul>
       </div>
+      <%# Write a Review %>
+      <% if current_user.bookings.where(experience: @experience).any? && current_user.bookings.where(experience: @experience).first.end_date > Date.today && @experience.reviews.where(user: current_user).empty? %>
+        <div class="exp-info-item">
+          <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Write a Review
+          </button>
+        </div>
+      <% end %>
+      <%# New Review Form %>
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Write a Review</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <%= simple_form_for @review, url: experience_reviews_path(params[:id])  do |f| %>
+                <%= f.input :content %>
+                <%= f.input :danger_level, as: :select, collection: (1..5) %>
+            </div>
+            <div class="modal-footer">
+              <%= f.submit 'Post', class: "btn btn-success w-100" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</div>

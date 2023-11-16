@@ -12,7 +12,7 @@ export default class extends Controller {
     if (this.startTarget.value != "" && this.endTarget.value != "") {
       const totalDays = ((new Date(this.endTarget.value) - new Date(this.startTarget.value)) / 86400000) + 1
       const totalPrice = totalDays * this.priceValue
-      this.totalTarget.innerHTML = `<i class="fa-solid fa-yen-sign gap-2"></i>${totalPrice}`
+      this.totalTarget.innerHTML = `<i class="fa-solid fa-yen-sign gap-2"></i> ${this.priceValue}  X  ${totalDays} days  =  <i class="fa-solid fa-yen-sign gap-2"></i> ${totalPrice}`
       this.totalLabelTarget.classList.remove('d-none')
     } else {
       this.totalTarget.innerHTML = ""

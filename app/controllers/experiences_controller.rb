@@ -15,8 +15,8 @@ class ExperiencesController < ApplicationController
 
   def show
     @booking = Booking.new
-    @reviews = @experience.reviews
     @review = Review.new
+    @reviews = @experience.reviews.limit(10)
   end
 
   def new
