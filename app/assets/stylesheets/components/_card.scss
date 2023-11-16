@@ -77,6 +77,17 @@
   object-fit: cover;
 }
 
+.fa-crown {
+  position: absolute;
+  opacity: .8;
+  filter: drop-shadow(1px 1px 1px black);
+  top: 4px;
+  right: -4px;
+  color: lightgrey;
+  z-index: 6;
+  padding: 7px;
+}
+
 .card-trip h2 {
   font-size: 24px;
   font-weight: bold;

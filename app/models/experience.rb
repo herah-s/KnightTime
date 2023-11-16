@@ -2,6 +2,7 @@ class Experience < ApplicationRecord
   belongs_to :host, class_name: "User"
   has_many :bookings
   has_one_attached :photo
+  has_many :favorites
 
   validates :name, :description, :price, :address, :category, presence: true
   validates :description, length: { minimum: 10 }

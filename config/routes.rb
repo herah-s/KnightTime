@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :experiences, only: [:index, :show, :new, :create, :edit, :update] do
     resources :bookings, only: [:create]
+    resources :favorites, only: [:create]
   end
 
   resources :bookings, only: [:index, :destroy]
