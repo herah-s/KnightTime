@@ -31,7 +31,20 @@
         </div>
         <%# Map (Maybe) %>
         <div id="exp-map" class="exp-info-item">
-          Map Goes Here Maybe!
+          <div class="d-flex flex-space-between">
+            <h3>Reviews</h3>
+            <button class="btn btn-success flex-end">Write a Review</button>
+          </div>
+          <% if @reviews.any? %>
+            <% @reviews.each do |review| %>
+              <div><%= review.user.first_name %> <%= review.user.last_name %></div>
+              <div>
+                Danger Level - <%= review.danger_level %></div>
+              <p><%= review.content %></p>
+            <% end %>
+          <% else %>
+            <p><%= "No reviews yet!" %></p>
+          <% end %>
         </div>
       </div>
     </div>

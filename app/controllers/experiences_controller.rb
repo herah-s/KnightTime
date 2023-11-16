@@ -15,6 +15,8 @@ class ExperiencesController < ApplicationController
 
   def show
     @booking = Booking.new
+    @reviews = @experience.reviews
+    @review = Review.new
   end
 
   def new
