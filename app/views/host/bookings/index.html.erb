@@ -1,42 +1,62 @@
 <div class="container">
   <h2 class="mt-2">My bookings</h2>
   <div>
-    <% @bookings.each do |booking| %>
-      <div class="big-card-border big-border-animated">
-        <div class="card-product-host-bookings row">
-          <div class="col-3">
-            <%= cl_image_tag booking.experience.photo.key %>
-          </div>
-          <div class="col-4">
-            <h3 class="ms-5 pt-2 mt-4 mb-4"><%= booking.experience.name %> - ¥<%= booking.total_price.to_i %></h3>
-            <p class="mb-2 ms-5"><i class="fa-solid fa-map-pin" style="color: red;"></i> <%= booking.experience.address %></p>
-          </div>
-          <div class="col-3 text-end">
-            <p class="badge rounded-pill bg-info text-white mb-4 mt-4"><%= booking.status %></p>
-            <p class="m-0">From <%= booking.start_date %></p>
-            <p class="m-0">to <%= booking.end_date %></p>
-          </div>
-          <div class="col-2">
-            <div class="confirm_or_reject text-end">
-              <div class="d-flex">
-                <% if booking.pending? %>
-                  <%= simple_form_for booking, url: host_booking_path(booking) do |f| %>
-                    <%= f.input :status, as: :hidden, input_html: { value: 'confirmed'} %>
-                    <%= f.submit 'Accept', class: 'btn btn-success' %>
+    <%# if statement to check for bookings %>
+    <% if @bookings.any? %>
+      <%# for each booking, create a card %>
+      <% @bookings.each do |booking| %>
+        <div>
+          <div class="card-product-host-bookings row my-4">
+            <%# photo column %>
+            <div class="col-3">
+              <%= cl_image_tag booking.experience.photo.key %>
+            </div>
+            <%# experience and price column %>
+            <div class="col-4">
+              <h3 class="ms-5 pt-2 mt-4 mb-2"><%= booking.experience.name %> - ¥<%= booking.total_price.to_i %></h3>
+              <p class="mb-2 ms-5"><i class="fa-solid fa-map-pin" style="color: red;"></i> <%= booking.experience.address %></p>
+              <p class="mb-2 ms-5">Booked by <%= booking.user.first_name.capitalize %> <%= booking.user.last_name.capitalize %></p>
+            </div>
+            <%# status and dates column %>
+            <div class="col-3 text-end">
+              <%# change badge color based on status %>
+              <% if booking.status == "rejected" %>
+                <p class="badge rounded-pill bg-secondary text-white mb-4 mt-4"><%= booking.status %></p>
+              <% elsif booking.status == "confirmed" %>
+                <p class="badge rounded-pill bg-primary text-white mb-4 mt-4"><%= booking.status %></p>
+              <% else %>
+                <p class="badge rounded-pill bg-success text-white mb-4 mt-4"><%= booking.status %></p>
+              <% end %>
+              <p class="m-0">From <%= booking.start_date %></p>
+              <p class="m-0">to <%= booking.end_date %></p>
+            </div>
+            <%# confirm or reject buttons column %>
+            <div class="col-2 confirm_or_reject text-end">
+              <%# check if booking is pending, alter button and text accordingly %>
+              <% if booking.pending? %>
+                <%# confirmed button %>
+                <%= simple_form_for booking, url: host_booking_path(booking) do |f| %>
+                  <%= f.input :status, as: :hidden, input_html: { value: 'confirmed'} %>
+                  <%= f.button :button do %>
+                    <i class="fa-solid fa-circle-check fa-2xl" style="color: #35B524;"></i>
                   <% end %>
-                  <%= simple_form_for booking, url: host_booking_path(booking) do |f| %>
-                    <%= f.input :status, as: :hidden, input_html: { value: 'rejected'} %>
-                    <%= f.submit 'Reject', class: 'btn btn-light' %>
-                  <% end %>
-                <% else %>
-                  <p><%= booking.status %></p>
                 <% end %>
-              </div>
-              <button class="btn my-3"><i class="fa-solid fa-circle-check fa-2xl" style="color: green;"></i></button>
-              <button class="btn my-3"><i class="fa-solid fa-circle-xmark fa-2xl" style="color: red;"></i></button>
+                <%# reject button %>
+                <%= simple_form_for booking, url: host_booking_path(booking) do |f| %>
+                  <%= f.input :status, as: :hidden, input_html: { value: 'rejected'} %>
+                  <%= f.button :button do%>
+                    <i class="fa-solid fa-circle-xmark fa-2xl" style="color: #FF122A;"></i>
+                  <% end %>
+                <% end %>
+              <% end %>
+              <%# <button class="btn my-3"><i class="fa-solid fa-circle-check fa-2xl" style="color: green;"></i></button>
+              <button class="btn my-3"><i class="fa-solid fa-circle-xmark fa-2xl" style="color: red;"></i></button> %>
             </div>
           </div>
-        </div>
+        <% end %>
+        <%# if no bookings display below %>
+      <% else %>
+        <p>You have no bookings yet!</p>
       <% end %>
     </div>
   </div>
