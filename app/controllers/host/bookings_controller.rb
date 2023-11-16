@@ -1,5 +1,10 @@
 class Host::BookingsController < ApplicationController
   before_action :set_booking, only: :update
+
+  def index
+    @bookings = Booking.all
+  end
+
   def update
     @booking.update(booking_params)
     @booking.save
