@@ -7,10 +7,10 @@
           <%= cl_image_tag booking.experience.photo.key %>
           <div>
             <div>
-              <h3 class="ms-5 pt-2"><%= booking.experience.name %> - ¥<%= booking.total_price.to_i %></h3>
-              <p class="mb-2 ms-5"><i class="fa-solid fa-map-pin" style="color: red;"></i> <%= booking.experience.address %></p>
-              <p class="ms-5"><strong><%= booking.status %></strong></p>
-              <p class="ms-5 pb-2"><%= booking.start_date %> - <%= booking.end_date %></p>
+              <h3 class="ms-4 pt-2"><%= booking.experience.name %> - ¥<%= booking.total_price.to_i %></h3>
+              <p class="mb-2 ms-4"><i class="fa-solid fa-map-pin" style="color: red;"></i> <%= booking.experience.address %></p>
+              <p class="ms-4"><strong><%= booking.status %></strong></p>
+              <p class="ms-4 pb-2"><%= booking.start_date %> - <%= booking.end_date %></p>
             </div>
           </div>
         </div>

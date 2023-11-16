@@ -21,7 +21,7 @@ $card-width: calc(var($card-height) / 1.5);
   margin-bottom: 10px;
   margin-right: 15px;
   margin-left: 15px;
-  border-radius: 6px;
+  border-radius: inherit;
   position: relative;
   justify-content: center;
   align-items: center;
@@ -69,8 +69,7 @@ $card-width: calc(var($card-height) / 1.5);
 }
 
 .big-border-animated {
-  width: 100%;
-  height: 121px;
+  width: max-content;
   margin-top: 20px;
   margin-bottom: 10px;
   border-radius: 6px;
@@ -91,24 +90,6 @@ $card-width: calc(var($card-height) / 1.5);
     animation: spin 2.5s linear infinite;
   }
 
-  &::after {
-    position: absolute;
-    content: "";
-    top: calc(var($card-height) / 6);
-    left: 0;
-    right: 0;
-    z-index: -1;
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
-    transform: scale(0.8);
-    filter: blur(1.5rem);
-    background-image: linear-gradient(var(--rotate),
-    #a27fe8, #9065E9 43%, #372765);
-    opacity: 1;
-    transition: opacity .5s;
-    animation: spin 2.5s linear infinite;
-  }
 }
 
 @keyframes spin {
