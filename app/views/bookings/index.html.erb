@@ -1,23 +1,43 @@
 <div class="container">
-  <h2 class="mt-2">My bookings</h2>
-  <div>
-    <% @bookings.each do |booking| %>
-      <div class="big-card-border big-border-animated">
-        <div class="card-product">
-          <%= cl_image_tag booking.experience.photo.key %>
-          <div>
-            <div>
-              <h3 class="ms-4 pt-2"><%= booking.experience.name %> - ¥<%= booking.total_price.to_i %></h3>
-              <p class="mb-2 ms-4"><i class="fa-solid fa-map-pin" style="color: red;"></i> <%= booking.experience.address %></p>
-              <p class="ms-4 pb-2"><%= booking.start_date %> - <%= booking.end_date %></p>
-              <p class="ms-4"><strong><%= booking.status %></strong></p>
+  <h2 class="mt-4">My bookings</h2>
+  <% if @bookings.any? %>
+    <div class="cards">
+      <% @bookings.each do |booking| %>
+        <div class="border-animated card-border">
+          <div class="card-trip mx-3">
+            <%= cl_image_tag booking.experience.photo.key %>
+            <div class="card-trip-infos">
+              <div>
+                <h2><%= booking.experience.name %> - ¥<%= booking.experience.price.to_i %></h2>
+                <p><i class="fa-solid fa-map-pin" style="color: red;"></i> <%= booking.experience.address %></p>
+                <p><strong>From</strong> <%= booking.start_date %></p>
+                <p><strong>To</strong>     <%= booking.end_date %></p>
+              </div>
+              <div class="d-grid gap-2 mx-3 text-end">
+                <% if booking.status == "rejected" %>
+                  <p class="badge rounded-pill bg-secondary text-white mb-3 mt-3"><%= booking.status %></p>
+                <% elsif booking.status == "confirmed" %>
+                  <p class="badge rounded-pill bg-primary text-white mb-3 mt-3"><%= booking.status %></p>
+                <% else %>
+                  <p class="badge rounded-pill bg-success text-white mb-3 mt-3"><%= booking.status %></p>
+                <% end %>
+                <% if booking.status == "pending" %>
+                  <%= link_to "Cancel",
+                  booking_path(booking),
+                  data: {turbo_method: :delete, turbo_confirm: "COWARD!!!!!!!!!!!!!!!!!!!!!!!!!"},
+                  class:"btn btn-secondary btn-sm m-2" %>
+                <% else %>
+                  <%= link_to "Cancel",
+                  booking_path(booking),
+                  class:"btn btn-secondary btn-sm m-2 disabled" %>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
-        <%= link_to "Delete",
-          booking_path(booking),
-          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-secondary btn-sm m-2" %>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>You have no bookings yet!</p>
+  <% end %>
 </div>
