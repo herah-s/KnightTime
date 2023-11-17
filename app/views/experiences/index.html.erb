@@ -24,9 +24,9 @@
             Price range
           </a>
           <ul class="dropdown-menu" aria-labelledby="priceDropdown">
-              <li><%= link_to "Under ¥3000", experiences_path(min_price: 0, max_price: 3000) %></li>
-              <li><%= link_to "¥3001 - ¥9999", experiences_path(min_price: 3001, max_price: 9999) %></li>
-              <li><%= link_to "Over ¥10 000", experiences_path(min_price:10000 , max_price: 70000) %></li>
+            <li><%= link_to "Under ¥3000", experiences_path(min_price: 0, max_price: 3000) %></li>
+            <li><%= link_to "¥3001 - ¥9999", experiences_path(min_price: 3001, max_price: 9999) %></li>
+            <li><%= link_to "Over ¥10 000", experiences_path(min_price:10000 , max_price: 70000) %></li>
           </ul>
         </li>
       </ul>
@@ -47,8 +47,7 @@
     <% @experiences.each do |experience| %>
       <div class="border-animated card-border">
         <div class="card-trip mx-3">
-          <%= experience.photo.key.present? ? cl_image_tag(experience.photo.key) : image_tag("super_mario_arena.gif"), class: "position-relative" %>
-          <%=# cl_image_tag experience.photo.key, class: "position-relative" %>
+          <%= experience.photo.key.present? ? cl_image_tag(experience.photo.key, class:"position-relative") : image_tag("super_mario_arena.gif", class: "position-relative") %>
           <%# add favorites icon %>
           <div data-controller="favorite" >
             <%= simple_form_for [experience, @favorite] do |f| %>
