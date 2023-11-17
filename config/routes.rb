@@ -7,13 +7,15 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :experiences, only: [:index, :show, :new, :create, :edit, :update] do
-    resources :bookings, only: [:create]
-    resources :favorites, only: [:create]
+    resources :bookings, only: :create
+    resources :reviews, only: :create
   end
 
   resources :bookings, only: [:index, :destroy]
+  resources :reviews, only: :destroy
 
   namespace :host do
+    resources :experiences, only: [:index, :destroy]
     resources :bookings, only: [:index, :update]
   end
 end
