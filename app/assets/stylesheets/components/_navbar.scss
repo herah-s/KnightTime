@@ -13,8 +13,16 @@
 
 .nav-link {
   color: white;
+
+  &:hover {
+    color: $light-purple;
+  }
 }
 
 .categories_navbar {
   background-color: #9b31f7ad;
+}
+
+.dropdown-item:hover {
+  background-color: $mid-purple;
 }
