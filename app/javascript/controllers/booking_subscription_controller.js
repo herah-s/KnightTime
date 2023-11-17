@@ -6,11 +6,25 @@ export default class extends Controller {
   static values = { bookingId: Number }
   static targets = ["messages"]
 
+
   connect() {
     this.channel = createConsumer().subscriptions.create(
       { channel: 'BookingChannel', id: this.bookingIdValue },
-      { received: data => console.log(data) }
+      { received: data => this.#insertMessageAndScrollDown(data) }
     )
-    console.log(`Subscribe to the chatroom with the id ${this.bookingIdValue}.`)
+  }
+
+  #insertMessageAndScrollDown(data) {
+    this.messagesTarget.insertAdjacentHTML("beforeend", data)
+    this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight)
+  }
+
+  resetForm(event) {
+    event.target.reset()
+  }
+
+  disconnect() {
+    console.log("Unsubscribed")
+    this.channel.unsubscribe()
   }
 }

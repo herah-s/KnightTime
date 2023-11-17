@@ -6,7 +6,11 @@ class MessagesController < ApplicationController
     @message.user = current_user
 
     if @message.save
-      redirect_to booking_path(@booking)
+      BookingChannel.broadcast_to(
+        @booking,
+        render_to_string(partial: "message", locals: { message: @message })
+      )
+      head :ok
     else
       render "booking/show", status: :unprocessable_entity
     end

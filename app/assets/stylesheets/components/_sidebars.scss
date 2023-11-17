@@ -1,0 +1,31 @@
+.chat-navbar {
+  background-color: #4b3949;
+  color: white;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.chat-navbar p {
+  margin-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  opacity: .7;
+  font-weight: lighter;
+}
+
+.chat-navbar .name-workspace {
+  font-weight: bold;
+  font-size: 30px;
+  opacity: 1;
+}
+
+.chat-navbar .active-channel, .chat-navbar .channels, .chat-navbar .direct-messages {
+  font-weight: bold;
+  opacity: 1;
+}
+
+.chat-navbar .fa-circle {
+  font-size: 8px;
+}

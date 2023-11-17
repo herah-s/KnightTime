@@ -1,25 +1,29 @@
-<div class="container" data-controller="booking-subscription"
+<div class="main-container row" data-controller="booking-subscription"
   data-booking-subscription-booking-id-value="<%= @booking.id %>">
-  <h1>#<%= @booking.experience.name %></h1>
-  <div class="messages" data-booking-subscription-target="messages">
-    <% @booking.messages.each do |message| %>
-      <div id="message-<%= message.id %>">
-        <small>
-          <strong><%= message.user.first_name %> <%= message.user.last_name %></strong>
-          <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-        </small>
-        <p><%= message.content %></p>
-      </div>
-    <% end %>
+  <div class="col-2 p-0">
+    <div class="chat-navbar d-flex flex-column justify-content-start align-items-start padded">
+      <p class="name-workspace my-0">Knight Time</p>
+      <p class="name-user"><i class="fa-solid fa-circle"></i> <%= current_user.first_name %> <%= current_user.last_name %></p>
+    </div>
   </div>
-  <%= simple_form_for [@booking, @message],
-  html: {class: "d-flex"} do |f|
-%>
-    <%= f.input :content,
-    label: false,
-    placeholder: "Message about #{@booking.experience.name}",
-    wrapper_html: {class: "flex-grow-1"}
-  %>
-    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-  <% end %>
+  <div class="col-10 p-0">
+    <div class="chat padded d-flex flex-column">
+      <div class="active-channel-name border-bottom mx-4">
+        <p><i class="fa-brands fa-slack"></i> <%= @booking.experience.name %> Experience</p>
+      </div>
+      <div class="messages flex-grow-1" data-booking-subscription-target="messages">
+        <% @booking.messages.last(5).each do |message| %>
+          <%= render 'messages/message', message: message %>
+        <% end %>
+      </div>
+      <%= simple_form_for [@booking, @message],
+        html: { data: { action: "turbo:submit-end->booking-subscription#resetForm" }, class: "d-flex w-100 form-control" }  do |f| %>
+        <%= f.input :content,
+            label: false,
+            placeholder: "Message about #{@booking.experience.name} Experience",
+            wrapper_html: {class: "flex-grow-1"} %>
+        <%= f.submit "Send", class: "btn btn-success mb-3" %>
+      <% end %>
+    </div>
+  </div>
 </div>
