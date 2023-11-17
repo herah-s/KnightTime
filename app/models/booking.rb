@@ -2,6 +2,7 @@ class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :experience
   has_one :review
+  has_many :messages
 
   validates :start_date, :end_date, presence: true
   validates :end_date, comparison: { greater_than: :start_date }

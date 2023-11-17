@@ -11,7 +11,10 @@ Rails.application.routes.draw do
     resources :reviews, only: :create
   end
 
-  resources :bookings, only: [:index, :destroy]
+  resources :bookings, only: [:index, :show, :destroy] do
+    resources :messages, only: :create
+  end
+
   resources :reviews, only: :destroy
 
   namespace :host do
