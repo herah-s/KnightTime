@@ -5,7 +5,7 @@
       <% @bookings.each do |booking| %>
         <div class="border-animated card-border">
           <div class="card-trip mx-3">
-            <%= cl_image_tag booking.experience.photo.key %>
+            <%= experience.photo.key.present? ? cl_image_tag(experience.photo.key) : image_tag("super_mario_arena.gif") %>
             <div class="card-trip-infos">
               <div>
                 <h2><%= booking.experience.name %> - ¥<%= booking.experience.price.to_i %></h2>

@@ -1,4 +1,4 @@
-<div class="exp-top-image" style="background-image: url('<%= cl_image_path(@experience.photo.key) %>')"></div>
+<div class="exp-top-image" style="background-image: url('<%= (@experience.photo.key).nil? ? image_path("super_mario_arena.gif") : cl_image_path(@experience.photo.key) %>')"></div>
 <div class="container">
   <div class="row wrapper">
     <%# Experience Info %>
