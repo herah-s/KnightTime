@@ -7,7 +7,7 @@ class Experience < ApplicationRecord
 
   validates :name, :description, :price, :address, :category, presence: true
   validates :description, length: { minimum: 10 }
-  validates :name, :address,  length: { maximum: 22 }
+  validates :name, :address, length: { maximum: 22 }
   validates :price, numericality: true
   validates :category, inclusion: { in: ["Jousting", "Archery", "Samurai", "Vikings", "Knights", "Ninja"] }
 
