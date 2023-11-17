@@ -17,7 +17,7 @@
             <% @categories.each do |category| %>
               <li><%= link_to category, experiences_path(category: category), class: "dropdown-item" %></li>
             <% end %>
-            <li><%= link_to "favorites", experiences_path(favorites: true), class: "dropdown-item"%></li>
+            <li><%= link_to "Favorites", experiences_path(favorites: true), class: "dropdown-item"%></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
