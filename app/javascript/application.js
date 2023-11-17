@@ -5,5 +5,5 @@ import "@popperjs/core"
 import "bootstrap"
 import "@rails/actioncable"
 
-import FavoriteController from "./controllers/favorite_controller.js"
-Stimulus.register("favorite", FavoriteController)
+// import FavoriteController from "./controllers/favorite_controller.js"
+// Stimulus.register("favorite", FavoriteController)
