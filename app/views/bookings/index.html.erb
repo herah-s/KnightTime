@@ -25,11 +25,11 @@
                   <%= link_to "Cancel",
                   booking_path(booking),
                   data: {turbo_method: :delete, turbo_confirm: "COWARD!!!!!!!!!!!!!!!!!!!!!!!!!"},
-                  class:"btn btn-secondary btn-sm m-2" %>
+                  class:"btn btn-danger btn-sm m-2" %>
                 <% else %>
                   <%= link_to "Cancel",
                   booking_path(booking),
-                  class:"btn btn-secondary btn-sm m-2 disabled" %>
+                  class:"btn btn-outline-secondary btn-sm m-2 disabled" %>
                 <% end %>
               </div>
             </div>
