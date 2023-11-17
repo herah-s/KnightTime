@@ -3,6 +3,7 @@ class Experience < ApplicationRecord
   has_many :bookings
   has_many :reviews, through: :bookings
   has_one_attached :photo
+  has_many :favorites
 
   validates :name, :description, :price, :address, :category, presence: true
   validates :description, length: { minimum: 10 }

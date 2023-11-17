@@ -42,11 +42,21 @@
 <%# Bootstrap category navbar end %>
 <div class="container">
   <h1 class="mt-3">Experiences</h1>
+  <%# create individual cards %>
   <div class="cards">
     <% @experiences.each do |experience| %>
       <div class="border-animated card-border">
         <div class="card-trip mx-3">
-          <%= cl_image_tag experience.photo.key %>
+          <%= cl_image_tag experience.photo.key, class: "position-relative" %>
+          <%# add favorites icon %>
+          <div data-controller="favorite" >
+            <%= simple_form_for [experience, @favorite] do |f| %>
+              <%= f.button :button do %>
+                <i class="fa-solid fa-crown fa-large <%= 'favorite' if current_user.favorites.find_by(experience: experience) %>" data-favorite-target data-action="click->favorite#toggle_favorite"></i>
+                <%# raise %>
+              <% end %>
+            <% end %>
+          </div>
           <div class="card-trip-infos">
             <div>
               <h2><%= experience.name %></h2>

@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2023_11_16_083449) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +68,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_16_083449) do
     t.index ["host_id"], name: "index_experiences_on_host_id"
   end
 
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "experience_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["experience_id"], name: "index_favorites_on_experience_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+
   create_table "reviews", force: :cascade do |t|
     t.text "content"
     t.integer "danger_level"
@@ -99,6 +108,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_16_083449) do
   add_foreign_key "bookings", "experiences"
   add_foreign_key "bookings", "users"
   add_foreign_key "experiences", "users", column: "host_id"
+  add_foreign_key "favorites", "experiences"
+  add_foreign_key "favorites", "users"
   add_foreign_key "reviews", "bookings"
   add_foreign_key "reviews", "users"
 end
