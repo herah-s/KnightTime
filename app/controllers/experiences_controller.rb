@@ -4,17 +4,30 @@ class ExperiencesController < ApplicationController
   before_action :set_experience, only: [:show, :edit, :update]
 
   def index
+    @favorite = Favorite.new
+    @favorites = Favorite.where(user: current_user)
+
+    @experiences = Experience.all
+
+    if params[:min_price].present?
+      min_price = params[:min_price].to_i
+      max_price = params[:max_price].to_i
+      @experiences = @experiences.where("price >= ? AND price <= ?", min_price, max_price)
+    end
+
     if params[:category].present?
-      @experiences = Experience.where("category = ?", params[:category])
-    elsif params[:query].present?
-      @experiences = Experience.where("description LIKE ?", "%#{params[:query]}%")
-    else
-      @experiences = Experience.all
+      @experiences = @experiences.where("category = ?", params[:category])
+    end
+
+    if params[:query].present?
+      @experiences = @experiences.where("description LIKE ?", "%#{params[:query]}%")
     end
   end
 
   def show
     @booking = Booking.new
+    @review = Review.new
+    @reviews = @experience.reviews.limit(10)
   end
 
   def new

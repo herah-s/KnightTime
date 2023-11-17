@@ -19,9 +19,19 @@
             <% end %>
           </ul>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Price range
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="priceDropdown">
+              <li><%= link_to "Under ¥3000", experiences_path(min_price: 0, max_price: 3000) %></li>
+              <li><%= link_to "¥3001 - ¥9999", experiences_path(min_price: 3001, max_price: 9999) %></li>
+              <li><%= link_to "Over ¥10 000", experiences_path(min_price:10000 , max_price: 70000) %></li>
+          </ul>
+        </li>
       </ul>
       <form class="d-flex">
-        <%= form_with url: "/flats", class: 'd-flex', type: "search", placeholder: "Search", 'aria-label': "Search", method: :get do |form| %>
+        <%= form_with url: "/experiences", class: 'd-flex', type: "search", placeholder: "Search", 'aria-label': "Search", method: :get do |form| %>
           <%= form.text_field :query, class: 'form-control me-2' %>
           <%= form.submit "Search", class: 'btn btn-outline-success' %>
         <% end %>
@@ -32,11 +42,22 @@
 <%# Bootstrap category navbar end %>
 <div class="container">
   <h1 class="mt-3">Experiences</h1>
+  <%# create individual cards %>
   <div class="cards">
     <% @experiences.each do |experience| %>
       <div class="border-animated card-border">
         <div class="card-trip mx-3">
-          <%= experience.photo.key.present? ? cl_image_tag(experience.photo.key) : image_tag("super_mario_arena.gif") %>
+          <%= experience.photo.key.present? ? cl_image_tag(experience.photo.key) : image_tag("super_mario_arena.gif"), class: "position-relative" %>
+          <%=# cl_image_tag experience.photo.key, class: "position-relative" %>
+          <%# add favorites icon %>
+          <div data-controller="favorite" >
+            <%= simple_form_for [experience, @favorite] do |f| %>
+              <%= f.button :button do %>
+                <i class="fa-solid fa-crown fa-large <%= 'favorite' if current_user.favorites.find_by(experience: experience) %>" data-favorite-target data-action="click->favorite#toggle_favorite"></i>
+                <%# raise %>
+              <% end %>
+            <% end %>
+          </div>
           <div class="card-trip-infos">
             <div>
               <h2><%= experience.name %></h2>
