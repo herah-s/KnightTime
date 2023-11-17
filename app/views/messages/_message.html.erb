@@ -1,0 +1,14 @@
+<div class="message d-flex align-items-start justify-content-start m-2" id="message-<%= message.id %>">
+  <% if message.user.photo.attached? %>
+    <%= cl_image_tag message.user.photo.key, alt: 'host-avatar', class: "avatar" %>
+  <% else %>
+    <%= image_tag 'placeholder_avatar.png', alt: 'host-avatar', class: "avatar" %>
+  <% end %>
+  <div class="message-body">
+    <p class="username p-0 m-0"><%= message.user.first_name %> <%= message.user.last_name %></p>
+    <small>
+      <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+    </small>
+    <p class="message-text p-0 m-0"><%= message.content %></p>
+  </div>
+</div>

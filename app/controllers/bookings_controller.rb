@@ -5,6 +5,11 @@ class BookingsController < ApplicationController
     @bookings = Booking.where(user: current_user).order(created_at: :desc)
   end
 
+  def show
+    @booking = Booking.find(params[:id])
+    @message = Message.new
+  end
+
   def create
     parsed_start_date = Date.parse(params[:booking][:start_date])
     parsed_end_date = Date.parse(params[:booking][:end_date])

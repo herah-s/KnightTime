@@ -1,0 +1,27 @@
+.message .avatar {
+  width: 40px;
+  height: 40px;
+}
+
+
+.chat .active-channel-name p {
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+.message-input {
+  position: sticky;
+  bottom: 0;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.messages {
+  overflow-y: scroll;
+}
+
+.message {
+  gap: 10px;
+}
