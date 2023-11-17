@@ -8,7 +8,7 @@
         <div class="card-product-host-bookings row my-4">
           <%# photo column %>
           <div class="col-3">
-            <%= cl_image_tag booking.experience.photo.key %>
+            <%= experience.photo.key.present? ? cl_image_tag(experience.photo.key) : image_tag("super_mario_arena.gif") %>
           </div>
           <%# experience and price column %>
           <div class="col-4">

@@ -5,7 +5,7 @@
       <% @experiences.each do |experience| %>
         <div class="border-animated card-border">
           <div class="card-trip mx-3">
-            <%= cl_image_tag experience.photo.key %>
+            <%= experience.photo.key.present? ? cl_image_tag(experience.photo.key) : image_tag("super_mario_arena.gif") %>
             <div class="card-trip-infos">
               <div>
                 <h2><%= experience.name %></h2>
