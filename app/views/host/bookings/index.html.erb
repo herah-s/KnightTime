@@ -11,13 +11,17 @@
             <%= booking.experience.photo.key.present? ? cl_image_tag(booking.experience.photo.key) : image_tag("super_mario_arena.gif") %>
           </div>
           <%# experience and price column %>
-          <div class="col-4">
-            <h3 class="ms-5 pt-2 mt-4 mb-2"><%= booking.experience.name %> - ¥<%= booking.total_price.to_i %></h3>
+          <div class="col-3">
+            <h3 class="ms-5 pt-2 mt-3 mb-2"><%= booking.experience.name %> - ¥<%= booking.total_price.to_i %></h3>
             <p class="mb-2 ms-5"><i class="fa-solid fa-map-pin" style="color: red;"></i> <%= booking.experience.address %></p>
             <p class="mb-2 ms-5">Booked by <%= booking.user.first_name.capitalize %> <%= booking.user.last_name.capitalize %></p>
           </div>
+          <%# message column %>
+          <div class="col-2 text-end justify-content-center">
+            <%= link_to "Message #{booking.user.first_name.capitalize}!", booking_path(booking), class:"btn btn-success message-button mt-5" %>
+          </div>
           <%# status and dates column %>
-          <div class="col-3 text-end">
+          <div class="col-2 text-end">
             <%# change badge color based on status %>
             <% if booking.status == "rejected" %>
               <p class="badge rounded-pill bg-secondary text-white mb-4 mt-4"><%= booking.status %></p>
