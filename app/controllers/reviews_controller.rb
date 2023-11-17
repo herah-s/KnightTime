@@ -1,7 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :set_experience, only: [:create]
-
   def create
+    @experience = Experience.find(params[:experience_id])
     @review = Review.new(review_params)
     @review.user = current_user
     @review.booking = current_user.bookings.where(experience: @experience).last
@@ -17,14 +16,10 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    render 'experiences/show', status: :see_other
+    redirect_to experience_path(@review.booking.experience), status: :see_other
   end
 
   private
-
-  def set_experience
-    @experience = Experience.find(params[:experience_id])
-  end
 
   def review_params
     params.require(:review).permit(:content, :danger_level)

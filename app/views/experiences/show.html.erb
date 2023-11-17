@@ -42,12 +42,14 @@
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
                     <h5 class="card-title"><%= review.user.first_name %> <%= review.user.last_name %></h5>
-                    <div><%= link_to 'Delete', review_path(review), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete your review?' } %></div>
+                    <% if review.user == current_user %>
+                      <div><%= link_to 'Delete', review_path(review), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete your review?' } %></div>
+                    <% end %>
                   </div>
                   <p class="card-text"><%= review.content %></p>
                   <div class="text-end">
                     <% review.danger_level.times do %>
-                    <i class="fa-solid fa-skull"></i>
+                      <i class="fa-solid fa-skull"></i>
                     <% end %>
                   </div>
                 </div>
@@ -108,9 +110,9 @@
               <%= simple_form_for @review, url: experience_reviews_path(params[:id])  do |f| %>
                 <%= f.input :content %>
                 <%= f.input :danger_level, as: :select, collection: (1..5) %>
-            </div>
-            <div class="modal-footer">
-              <%= f.submit 'Post', class: "btn btn-success w-100" %>
+              </div>
+              <div class="modal-footer">
+                <%= f.submit 'Post', class: "btn btn-success w-100" %>
               <% end %>
             </div>
           </div>
