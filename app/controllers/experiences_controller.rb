@@ -22,6 +22,10 @@ class ExperiencesController < ApplicationController
     if params[:query].present?
       @experiences = @experiences.where("description LIKE ?", "%#{params[:query]}%")
     end
+
+    if params[:favorites].present?
+      @experiences = current_user.favorited_experiences
+    end
   end
 
   def show
