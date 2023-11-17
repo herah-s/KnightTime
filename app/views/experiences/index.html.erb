@@ -58,7 +58,6 @@
             <%= simple_form_for [experience, @favorite] do |f| %>
               <%= f.button :button do %>
                 <i class="fa-solid fa-crown fa-large <%= 'favorite' if current_user.favorites.find_by(experience: experience) %>" data-favorite-target data-action="click->favorite#toggle_favorite"></i>
-                <%# raise %>
               <% end %>
             <% end %>
           </div>
