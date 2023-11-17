@@ -8,13 +8,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
+        <%# Check user authentication %>
         <% if user_signed_in? %>
+          <%# link to bookings %>
           <li class="nav-item active">
             <%= link_to "My Bookings", bookings_path, class: "nav-link" %>
           </li>
+          <%# link to experiences top %>
           <li class="nav-item">
             <%= link_to "Experiences", experiences_path, class: "nav-link active", style: "color: white", "aria-current": "page" %>
           </li>
+          <%# avatar drop down menu %>
           <li class="nav-item dropdown">
             <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
@@ -22,7 +26,7 @@
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Create experience", new_experience_path, class: "dropdown-item" %>
               <%= link_to "Hosted experiences" , host_experiences_path, class: "dropdown-item"  %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
+              <%= link_to "My listings", host_bookings_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
