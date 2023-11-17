@@ -4,10 +4,9 @@ class ExperiencesController < ApplicationController
   before_action :set_experience, only: [:show, :edit, :update]
 
   def index
+    @experiences = Experience.all
     @favorite = Favorite.new
     @favorites = Favorite.where(user: current_user)
-
-    @experiences = Experience.all
 
     if params[:min_price].present?
       min_price = params[:min_price].to_i
