@@ -1,4 +1,5 @@
 // Specific CSS for your home-page
+
 .banner {
   background-size: cover;
   background-position: center;
@@ -6,8 +7,44 @@
   border-radius: 10px;
   -o-object-fit: contain;
   object-fit: contain;
-  margin-top: 100px;
+  margin-top: 50px;
   width: 100%;
+  position: relative;
+}
+
+.banner::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  bottom: -10px;
+  left: -10px;
+  border-radius: 20px;
+  background: radial-gradient(circle, #a27fe8, transparent);
+  z-index: -1;
+}
+
+.banner::after {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  bottom: -20px;
+  left: -20px;
+  border-radius: 30px;
+  background: radial-gradient(circle, #9065E9, transparent);
+  z-index: -2;
+}
+
+.banner::before,
+.banner::after {
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  to {
+    opacity: 0.7;
+  }
 }
 
 .banner h1 {
@@ -30,5 +67,15 @@
   text-align: center;
   border-radius: 5px;
   margin: 0 auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
 
+.btn-home:hover {
+  background-color: rgba(241, 196, 15, 0.5);
+  box-shadow: 0 0 20px rgba(241, 196, 15, 0.8);
 }

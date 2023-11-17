@@ -67,6 +67,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_17_015009) do
     t.index ["host_id"], name: "index_experiences_on_host_id"
   end
 
+
   create_table "messages", force: :cascade do |t|
     t.text "content"
     t.bigint "booking_id", null: false
@@ -75,6 +76,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_17_015009) do
     t.datetime "updated_at", null: false
     t.index ["booking_id"], name: "index_messages_on_booking_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "experience_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["experience_id"], name: "index_favorites_on_experience_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -109,8 +119,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_17_015009) do
   add_foreign_key "bookings", "experiences"
   add_foreign_key "bookings", "users"
   add_foreign_key "experiences", "users", column: "host_id"
+
   add_foreign_key "messages", "bookings"
   add_foreign_key "messages", "users"
+
+  add_foreign_key "favorites", "experiences"
+  add_foreign_key "favorites", "users"
+
   add_foreign_key "reviews", "bookings"
   add_foreign_key "reviews", "users"
 end

@@ -63,7 +63,7 @@
   border-radius: 5px;
   margin: 5px 20px 15px 20px;
   height: auto;
-  width: 350px;
+  width: 22rem;
 
   &:hover {
     background: rgba(36, 36, 36, 0.588);
@@ -75,6 +75,17 @@
   height: 200px;
   width: 100%;
   object-fit: cover;
+}
+
+.fa-crown {
+  position: absolute;
+  opacity: .8;
+  filter: drop-shadow(1px 1px 1px black);
+  top: 4px;
+  right: -4px;
+  color: lightgrey;
+  z-index: 6;
+  padding: 7px;
 }
 
 .card-trip h2 {
@@ -112,3 +123,7 @@
   width: 100%;
 }
 // Experiences index page cards end
+
+.favorite {
+  color: $yellow;
+}

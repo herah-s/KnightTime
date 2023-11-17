@@ -7,16 +7,31 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <%= link_to "Experiences", experiences_path, class: "nav-link active text-white", "aria-current": "page" %>
+          <%= link_to "View All", experiences_path, class: "nav-link active text-white", "aria-current": "page" %>
         </li>
+        <%# Start of dropdown bar %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Categories
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%# Filter by category %>
             <% @categories.each do |category| %>
               <li><%= link_to category, experiences_path(category: category), class: "dropdown-item" %></li>
             <% end %>
+            <%# Filter by favorites %>
+            <li><%= link_to "Favorites", experiences_path(favorites: true), class: "dropdown-item"%></li>
+          </ul>
+        </li>
+        <%# Filter by price %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Price range
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="priceDropdown">
+            <li><%= link_to "Under ¥3000", experiences_path(min_price: 0, max_price: 3000) %></li>
+            <li><%= link_to "¥3001 - ¥9999", experiences_path(min_price: 3001, max_price: 9999) %></li>
+            <li><%= link_to "Over ¥10 000", experiences_path(min_price:10000 , max_price: 70000) %></li>
           </ul>
         </li>
       </ul>
@@ -32,11 +47,20 @@
 <%# Bootstrap category navbar end %>
 <div class="container">
   <h1 class="mt-3">Experiences</h1>
+  <%# create individual cards %>
   <div class="cards">
     <% @experiences.each do |experience| %>
       <div class="border-animated card-border">
         <div class="card-trip mx-3">
-          <%= cl_image_tag experience.photo.key %>
+          <%= experience.photo.key.present? ? cl_image_tag(experience.photo.key, class:"position-relative") : image_tag("super_mario_arena.gif", class: "position-relative") %>
+          <%# add favorites icon %>
+          <div data-controller="favorite" >
+            <%= simple_form_for [experience, @favorite] do |f| %>
+              <%= f.button :button do %>
+                <i class="fa-solid fa-crown fa-large <%= 'favorite' if current_user.favorites.find_by(experience: experience) %>" data-favorite-target data-action="click->favorite#toggle_favorite"></i>
+              <% end %>
+            <% end %>
+          </div>
           <div class="card-trip-infos">
             <div>
               <h2><%= experience.name %></h2>
