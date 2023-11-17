@@ -35,16 +35,18 @@
   <%# create individual cards %>
   <div class="cards">
     <% @experiences.each do |experience| %>
-      <div class="border-animated card-border position-relative">
-        <%# add favorites icon %>
-        <%= simple_form_for [@experience, @favorite], url: experiences_path do |f| %>
-          <%= f.button :button do %>
-            <i class="fa-solid fa-crown fa-large"></i>
-          <% end %>
-        <% end %>
-        <%# <%= link_to "", experiences_path, class:"fa-solid fa-crown fa-large" %>
+      <div class="border-animated card-border">
         <div class="card-trip mx-3">
-          <%= cl_image_tag experience.photo.key %>
+          <%= cl_image_tag experience.photo.key, class: "position-relative" %>
+          <%# add favorites icon %>
+          <div data-controller="favorite" >
+            <%= simple_form_for [experience, @favorite] do |f| %>
+              <%= f.button :button do %>
+                <i class="fa-solid fa-crown fa-large <%= 'favorite' if current_user.favorites.find_by(experience: experience) %>" data-favorite-target data-action="click->favorite#toggle_favorite"></i>
+                <%# raise %>
+              <% end %>
+            <% end %>
+          </div>
           <div class="card-trip-infos">
             <div>
               <h2><%= experience.name %></h2>

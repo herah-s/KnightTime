@@ -4,6 +4,7 @@ class ExperiencesController < ApplicationController
   before_action :set_experience, only: [:show, :edit, :update]
 
   def index
+    @favorite = Favorite.new
     @favorites = Favorite.where(user: current_user)
     if params[:category].present?
       @experiences = Experience.where("category = ?", params[:category])
