@@ -91,7 +91,7 @@
         </ul>
       </div>
       <%# Write a Review %>
-      <% if current_user.bookings.where(experience: @experience).any? && current_user.bookings.where(experience: @experience).first.end_date > Date.today && @experience.reviews.where(user: current_user).empty? %>
+      <% if user_signed_in? && current_user.bookings.where(experience: @experience).any? && current_user.bookings.where(experience: @experience).first.end_date > Date.today && @experience.reviews.where(user: current_user).empty? %>
         <div class="exp-info-item">
           <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Write a Review

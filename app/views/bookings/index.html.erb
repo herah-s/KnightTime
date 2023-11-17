@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="mt-4">My Listings</h2>
+  <h2 class="mt-4">My Booked Experiences</h2>
   <%# Check for any bookings %>
   <% if @bookings.any? %>
     <div class="cards">
@@ -44,6 +44,7 @@
       <% end %>
     </div>
   <% else %>
+
     <p>You have no listings yet!</p>
   <% end %>
 </div>
