@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
 
     if @review.save
       redirect_to experience_path(@experience)
+      flash[:notice] = "Thank you for leaving a review!"
     else
       render 'experiences/show', status: :unprocessable_entity
     end
