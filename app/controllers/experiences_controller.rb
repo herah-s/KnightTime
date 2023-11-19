@@ -19,7 +19,7 @@ class ExperiencesController < ApplicationController
     end
 
     if params[:query].present?
-      @experiences = @experiences.where("description LIKE ?", "%#{params[:query]}%")
+      @experiences = Experience.search_by_name_description_and_category(params[:query])
     end
 
     if params[:favorites].present? && user_signed_in?
