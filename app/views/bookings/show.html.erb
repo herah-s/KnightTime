@@ -10,7 +10,7 @@
   <div class="col-10 p-0">
     <div class="chat padded d-flex flex-column">
       <div class="active-channel-name border-bottom mx-4">
-        <p><i class="fa-brands fa-slack"></i> <%= @booking.experience.name %> Experience</p>
+        <p><i class="fa-brands fa-slack"></i> <%= @booking.experience.name %> Experience <%= "(#{@booking.start_date} to #{@booking.end_date})" %></p>
       </div>
       <div class="messages flex-grow-1" data-booking-subscription-target="messages">
         <% @booking.messages.each do |message| %>

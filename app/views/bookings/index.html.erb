@@ -32,12 +32,14 @@
           </div>
         </div>
         <div class='d-flex justify-content-center align-items-center gap-4'>
-          <%= link_to "Talk to #{booking.experience.host.first_name}", booking_path(booking), class:"btn btn-success btn-sm" %>
-          <% if booking.status == "pending" || booking.status == "confirmed" %>
             <%# Let user choose to reject or accept a booking %>
-            <%= link_to "Cancel", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "COWARD!"}, class:"btn btn-danger btn-sm" %>
-          <% elsif booking.status == "confirmed" &&  booking.end_date >= Date.today || booking.status == "rejected" %>
+          <%= link_to "Talk to #{booking.experience.host.first_name}", booking_path(booking), class:"btn btn-success btn-sm" %>
+          <% if booking.status == "confirmed" &&  booking.start_date == Date.today %>
             <a href="#" class="btn btn-outline-secondary btn-sm disabled">Cancel</a>
+          <% elsif booking.status == "pending" || booking.status == "confirmed" %>
+            <%= link_to "Cancel", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "COWARD!"}, class:"btn btn-danger btn-sm" %>
+          <% elsif booking.status == "rejected" %>
+            <%= link_to "Remove", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-danger btn-sm" %>
           <% end %>
         </div>
       </div>
