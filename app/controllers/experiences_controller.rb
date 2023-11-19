@@ -22,7 +22,7 @@ class ExperiencesController < ApplicationController
       @experiences = @experiences.where("description LIKE ?", "%#{params[:query]}%")
     end
 
-    if params[:favorites].present?
+    if params[:favorites].present? && user_signed_in?
       @experiences = current_user.favorited_experiences
     end
   end
@@ -30,7 +30,7 @@ class ExperiencesController < ApplicationController
   def show
     @booking = Booking.new
     @review = Review.new
-    @reviews = @experience.reviews.limit(10)
+    @reviews = @experience.reviews
   end
 
   def new

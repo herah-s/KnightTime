@@ -1,9 +1,10 @@
 .chat-navbar {
-  background-color: #4b3949;
+  background-color: $dark-blue;
   color: white;
-  height: 100vh;
+  height: 94.3vh;
   position: sticky;
   top: 0;
+  border-radius: 0px 4px;
 }
 
 .chat-navbar p {

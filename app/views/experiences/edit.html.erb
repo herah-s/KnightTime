@@ -1,11 +1,5 @@
 <div class="container">
-  <%= simple_form_for @experience do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :price %>
-    <%= f.input :category, as: :select, collection: @categories%>
-    <%= f.input :address %>
-    <%= f.input :photo, as: :file %>
-    <%= f.submit %>
-  <% end %>
+  <h1 class="mt-3">Edit <%= @experience.name %></h1>
+
+  <%= render 'experience_form', experience: @experience, categories: @categories %>
 </div>

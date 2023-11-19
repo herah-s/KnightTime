@@ -28,36 +28,14 @@
               <%= cl_image_path(@experience.host.photo.key, alt: 'host-avatar', class: "avatar") %>
             <% end %>
             <div>
-              <p style="margin-bottom: 0px"><%= @experience.host.first_name %> <%= @experience.host.last_name %></p>
+              <p class="mb-0"><%= @experience.host.first_name %> <%= @experience.host.last_name %></p>
               <p><%= @experience.host.phone_number %></p>
             </div>
           </div>
         </div>
         <%# Reviews %>
         <div class="exp-info-item">
-          <h3>Latest Reviews</h3>
-          <% if @reviews.any? %>
-            <% @reviews.each do |review| %>
-              <div class="card w-100 mb-3 border border-success">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                    <h5 class="card-title"><%= review.user.first_name %> <%= review.user.last_name %></h5>
-                    <% if review.user == current_user %>
-                      <div><%= link_to 'Delete', review_path(review), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete your review?' } %></div>
-                    <% end %>
-                  </div>
-                  <p class="card-text"><%= review.content %></p>
-                  <div class="text-end">
-                    <% review.danger_level.times do %>
-                      <i class="fa-solid fa-skull"></i>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          <% else %>
-            <p><%= "No reviews yet!" %></p>
-          <% end %>
+          <%= render 'reviews', reviews: @reviews %>
         </div>
       </div>
     </div>
@@ -79,15 +57,9 @@
       <div class="exp-info-item">
         <h3>Share This Experience</h3>
         <ul class="d-flex flex-row flex-start gap-4" style="list-style: none; padding: 0px">
-          <li>
-            <h1><a style="color: #aaaaaa" href="#"><i class="fa-brands fa-square-facebook"></i></a></h1>
-          </li>
-          <li>
-            <h1><a style="color: #aaaaaa" href="#"><i class="fa-brands fa-square-instagram"></i></a></h1>
-          </li>
-          <li>
-            <h1><a style="color: #aaaaaa" href="#"><i class="fa-brands fa-square-pinterest"></i></a></h1>
-          </li>
+          <li><h1><a style="color: #aaaaaa" href="#"><i class="fa-brands fa-square-facebook"></i></a></h1></li>
+          <li><h1><a style="color: #aaaaaa" href="#"><i class="fa-brands fa-square-instagram"></i></a></h1></li>
+          <li><h1><a style="color: #aaaaaa" href="#"><i class="fa-brands fa-square-pinterest"></i></a></h1></li>
         </ul>
       </div>
       <%# Write a Review %>
@@ -98,26 +70,7 @@
           </button>
         </div>
       <% end %>
-      <%# New Review Form %>
-      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">Write a Review</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <%= simple_form_for @review, url: experience_reviews_path(params[:id])  do |f| %>
-                <%= f.input :content %>
-                <%= f.input :danger_level, as: :select, collection: (1..5) %>
-              </div>
-              <div class="modal-footer">
-                <%= f.submit 'Post', class: "btn btn-success w-100" %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
+      <%= render 'new_review_modal', review: @review %>
     </div>
   </div>
 </div>

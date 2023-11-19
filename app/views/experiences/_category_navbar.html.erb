@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg" style="background-color: #6821A6;">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "View All", experiences_path, class: "nav-link", "aria-current": "page" %>
+        </li>
+        <%# Start of dropdown bar %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%# Filter by category %>
+            <% categories.each do |category| %>
+              <li><%= link_to category, experiences_path(category: category), class: "dropdown-item" %></li>
+            <% end %>
+            <%# Filter by favorites %>
+            <li><%= link_to "Favorites", experiences_path(favorites: true), class: "dropdown-item"%></li>
+          </ul>
+        </li>
+        <%# Filter by price %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Price range
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="priceDropdown">
+            <li><%= link_to "Under ¥3000", experiences_path(min_price: 0, max_price: 3000) %></li>
+            <li><%= link_to "¥3001 - ¥9999", experiences_path(min_price: 3001, max_price: 9999) %></li>
+            <li><%= link_to "Over ¥10 000", experiences_path(min_price:10000 , max_price: 70000) %></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <%= form_with url: "/experiences", class: 'd-flex', type: "search", placeholder: "Search", 'aria-label': "Search", method: :get do |form| %>
+          <%= form.text_field :query, class: 'form-control me-2' %>
+          <%= form.submit "Search", class: 'btn btn-outline-success' %>
+        <% end %>
+      </form>
+    </div>
+  </div>
+</nav>
