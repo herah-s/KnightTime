@@ -1,6 +1,6 @@
 class ExperiencesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :categories, only: [:index, :edit]
+  before_action :categories, only: [:index, :new, :edit]
   before_action :set_experience, only: [:show, :edit, :update]
 
   def index
@@ -35,7 +35,6 @@ class ExperiencesController < ApplicationController
 
   def new
     @experience = Experience.new
-    @categories = ["Jousting", "Archery", "Samurai", "Vikings", "Knights", "Ninja"]
   end
 
   def create
