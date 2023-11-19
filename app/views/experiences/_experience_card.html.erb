@@ -1,0 +1,24 @@
+<div class="border-animated card-border">
+  <div class="card-trip mx-3">
+    <%= experience.photo.key.present? ? cl_image_tag(experience.photo.key, class:"position-relative") : image_tag("super_mario_arena.gif", class: "position-relative") %>
+    <%# add favorites icon %>
+    <div data-controller="favorite">
+      <%= simple_form_for [experience, @favorite] do |f| %>
+        <%= f.button :button do %>
+          <i class="fa-solid fa-crown fa-large <%= 'favorite' if user_signed_in? && current_user.favorites.find_by(experience: experience) %>" data-action="click->favorite#toggle_favorite"></i>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="card-trip-infos">
+      <div>
+        <h2><%= experience.name %></h2>
+        <p><i class="fa-solid fa-map-pin" style="color: red;"></i> <%= experience.address %></p>
+      </div>
+      <div>
+        <p class="badge rounded-pill bg-info text-white mb-1"><%= experience.category %></p>
+        <h2 class="card-trip-pricing text-end">¥<%= experience.price.to_i %></h2>
+      </div>
+    </div>
+    <%= link_to "", experience_path(experience[:id]), class: "card-link"%>
+  </div>
+</div>

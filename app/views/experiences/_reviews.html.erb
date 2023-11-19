@@ -1,0 +1,23 @@
+<h3>Reviews</h3>
+<% if reviews.any? %>
+  <% reviews.each do |review| %>
+    <div class="card w-100 mb-3 border border-success">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h5 class="card-title"><%= review.user.first_name %> <%= review.user.last_name %></h5>
+          <% if review.user == current_user %>
+            <div><%= link_to 'Delete', review_path(review), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete your review?' } %></div>
+          <% end %>
+        </div>
+        <p class="card-text"><%= review.content %></p>
+        <div class="text-end">
+          <% review.danger_level.times do %>
+            <i class="fa-solid fa-skull"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <p>No reviews yet!</p>
+<% end %>

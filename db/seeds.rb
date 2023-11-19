@@ -10,6 +10,7 @@ require "open-uri"
 #   end
 
 puts("cleaning the db...")
+Review.destroy_all
 Booking.destroy_all
 Experience.destroy_all
 User.destroy_all
