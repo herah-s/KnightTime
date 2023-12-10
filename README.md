@@ -1,6 +1,7 @@
 KnightTime is an app that lets find your next favorite medieval experience or host one yourself. 
 
 Users can browse all listed medieval experiences, search and filter them. Users can also bookmark an experience they are interested in for later, book it and talk to its owner. After using an experience, the user can leave a review.
+
 The user can host their own medieval experience if they want to. After they confirm a booking, they can talk to the user that booked their experience.
 
 ## Getting Started
