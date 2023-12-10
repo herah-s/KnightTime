@@ -1,4 +1,5 @@
 class Booking < ApplicationRecord
+  self.table_name = "knight_time_bookings"
   belongs_to :user, foreign_key: "knight_time_user_id"
   belongs_to :experience, foreign_key: "knight_time_experience_id"
   has_one :review, foreign_key: "knight_time_booking_id"
