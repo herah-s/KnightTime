@@ -1,27 +1,57 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+KnightTime is an app that lets find your next favorite medieval experience or host one yourself. 
 
-<h1>User Stories</h1>
+Users can browse all listed medieval experiences, search and filter them. Users can also bookmark an experience they are interested in for later, book it and talk to its owner. After using an experience, the user can leave a review.
+The user can host their own medieval experience if they want to. After they confirm a booking, they can talk to the user that booked their experience.
 
-As a visitor, I can see the homepage  
-As a visitor, I can sign in/sign up  
-As a visitor, I can see all medieval experiences  
-As a visitor, I can filter by category  
-As a visitor, I can filter by price  
-As a visitor, I can search for experiences  
-As a visitor, I can see one specific medieval experience  
-  
-As a user, I can bookmark interesting experiences  
-As a user, I can filter by bookmark  
-As a user, I can book an experience  
-As a user, I can cancel my booking  
-As a user, I can see all of my booking history  
-As a user, I can talk to the owner once I’ve booked the experience  
-As a user, I can leave a review if I’ve used the experienced  
+## Getting Started
+### Setup
 
-As a host, I can create an experience  
-As a host, I can see all of my experiences  
-As a host, I can edit my experience  
-As a host, I can delete my experience  
-As a host, I can see all of my bookings  
-As a host, I can confirm a booking  
-As a host, can talk to the user once they’ve booked my experience  
+Install gems
+```
+bundle install
+```
+
+### ENV Variables
+Create `.env` file
+```
+touch .env
+```
+Inside `.env`, set these variables. For any APIs, see group Slack channel.
+```
+CLOUDINARY_URL=your_own_cloudinary_url_key
+```
+
+### DB Setup
+```
+rails db:create
+rails db:migrate
+rails db:seed
+```
+
+### Run a server
+```
+rails s
+```
+
+## Built With
+- [Rails 7](https://guides.rubyonrails.org/) - Backend / Front-end
+- [Stimulus JS](https://stimulus.hotwired.dev/) - Front-end JS
+- [Heroku](https://heroku.com/) - Deployment
+- [PostgreSQL](https://www.postgresql.org/) - Database
+- [Bootstrap](https://getbootstrap.com/) — Styling
+- [Figma](https://www.figma.com) — Prototyping
+
+## Acknowledgements
+Inspired by the team's shared appreciation of swords.
+
+## Team Members
+- [Shinji Matsudo](https://github.com/vShinji)
+- [Mario Paju](https://github.com/MarioPaju1991)
+- [Rachael Momber](https://github.com/RLMP44)
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+This project is licensed under the MIT License
+
