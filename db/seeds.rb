@@ -10,6 +10,8 @@ require "open-uri"
 #   end
 
 puts("cleaning the db...")
+Favorite.destroy_all
+Message.destroy_all
 Review.destroy_all
 Booking.destroy_all
 Experience.destroy_all
@@ -157,7 +159,6 @@ assassins = Experience.create!(
 )
 assassins.photo.attach(io: assassins_file, filename: "assassins.jpg", content_type: "image/jpg")
 assassins.save
-
 
 # bookings
 booking_1 = Booking.create!(
