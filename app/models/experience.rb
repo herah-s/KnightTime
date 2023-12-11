@@ -1,10 +1,9 @@
 class Experience < ApplicationRecord
-  self.table_name = "knighttime_experiences"
-  belongs_to :host, class_name: "KnighttimeUser"
-  has_many :bookings, foreign_key: "knighttime_experience_id"
+  belongs_to :host, class_name: "User"
+  has_many :bookings
   has_many :reviews, through: :bookings
   has_one_attached :photo
-  has_many :favorites, foreign_key: "knighttime_experience_id"
+  has_many :favorites
 
   validates :name, :description, :price, :address, :category, presence: true
   validates :description, length: { minimum: 10 }
