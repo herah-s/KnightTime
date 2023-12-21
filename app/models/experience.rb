@@ -1,6 +1,6 @@
 class Experience < ApplicationRecord
   self.table_name = "kt_experiences"
-  belongs_to :host, class_name: "KtUser"
+  belongs_to :host, foreign_key: "kt_user_id", class_name: "KtUser"
   has_many :bookings, foreign_key: "kt_experience_id"
   has_many :reviews, through: :kt_bookings
   has_one_attached :photo
