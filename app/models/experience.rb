@@ -1,9 +1,10 @@
 class Experience < ApplicationRecord
-  belongs_to :host, class_name: "User"
-  has_many :bookings
+  self.table_name = "kt_experiences"
+  belongs_to :host, class_name: "KtUser"
+  has_many :bookings, foreign_key: "kt_experience_id"
   has_many :reviews, through: :bookings
   has_one_attached :photo
-  has_many :favorites
+  has_many :favorites, foreign_key: "kt_experience_id"
 
   validates :name, :description, :price, :address, :category, presence: true
   validates :description, length: { minimum: 10 }
