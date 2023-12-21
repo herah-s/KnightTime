@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :bookings_as_host, class_name: "KtBooking", foreign_key: :host_id, through: :experiences_as_host, source: :bookings
   has_one_attached :photo
   has_many :favorites, foreign_key: "kt_user_id"
-  has_many :favorited_experiences, through: :favorites, foreign_key: :kt_experience_id, source: :experience
+  has_many :favorited_experiences, through: :kt_favorites, foreign_key: :kt_experience_id, source: :kt_experience
 
   validates :first_name, presence: true
   validates :last_name, presence: true
