@@ -8,4 +8,8 @@ class ExperiencePolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def update?
+    record.host == user
+  end
 end
