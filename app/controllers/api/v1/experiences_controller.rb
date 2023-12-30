@@ -1,6 +1,6 @@
 class Api::V1::ExperiencesController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for User, only: [:update]
-  before_action :set_experience, only: [:show, :update]
+  acts_as_token_authentication_handler_for User, only: [:update, :create, :destroy]
+  before_action :set_experience, only: [:show, :update, :destroy]
   def index
     @experiences = policy_scope(Experience)
   end
@@ -14,6 +14,22 @@ class Api::V1::ExperiencesController < Api::V1::BaseController
     else
       render_error
     end
+  end
+
+  def create
+    @experience = Experience.new(experience_params)
+    @experience.host = current_user
+    authorize @experience
+    if @experience.save
+      render :show, status: :created
+    else
+      render_error
+    end
+  end
+
+  def destroy
+    @experience.destroy
+    head :no_content
   end
 
   private

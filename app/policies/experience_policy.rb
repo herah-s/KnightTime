@@ -12,4 +12,12 @@ class ExperiencePolicy < ApplicationPolicy
   def update?
     record.host == user
   end
+
+  def create?
+    update?
+  end
+
+  def destroy?
+    update?
+  end
 end
