@@ -1,6 +1,7 @@
 class Api::V1::ExperiencesController < Api::V1::BaseController
   acts_as_token_authentication_handler_for User, only: [:update, :create, :destroy]
   before_action :set_experience, only: [:show, :update, :destroy]
+
   def index
     @experiences = policy_scope(Experience)
   end

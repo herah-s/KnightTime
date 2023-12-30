@@ -57,13 +57,19 @@
       <div class="exp-info-item">
         <h3>Share This Experience</h3>
         <ul class="d-flex flex-row flex-start gap-4" style="list-style: none; padding: 0px">
-          <li><h1><a href="#"><i class="fa-brands fa-square-facebook"></i></a></h1></li>
-          <li><h1><a href="#"><i class="fa-brands fa-square-instagram"></i></a></h1></li>
-          <li><h1><a href="#"><i class="fa-brands fa-line"></i></a></h1></li>
+          <li>
+            <h1><a href="#"><i class="fa-brands fa-square-facebook"></i></a></h1>
+          </li>
+          <li>
+            <h1><a href="#"><i class="fa-brands fa-square-instagram"></i></a></h1>
+          </li>
+          <li>
+            <h1><a href="#"><i class="fa-brands fa-line"></i></a></h1>
+          </li>
         </ul>
       </div>
       <%# Write a Review %>
-      <% if user_signed_in? && current_user.bookings.where(experience: @experience).any? && current_user.bookings.where(experience: @experience).first.end_date > Date.today && @experience.reviews.where(user: current_user).empty? %>
+      <% if user_signed_in? && current_user.bookings.where(experience: @experience).any? && current_user.bookings.where(experience: @experience).first.end_date < Date.today && @experience.reviews.where(user: current_user).empty? %>
         <div class="exp-info-item">
           <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Write a Review
