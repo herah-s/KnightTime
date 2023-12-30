@@ -22,4 +22,10 @@ Rails.application.routes.draw do
     resources :experiences, only: [:index, :destroy]
     resources :bookings, only: [:index, :update]
   end
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :experiences, only: [:index, :show]
+    end
+  end
 end
